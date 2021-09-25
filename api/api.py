@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from .crud import *
 from http import HTTPStatus
+from specification import User
 
 app = FastAPI(title="Examples API")
 
@@ -10,20 +11,21 @@ async def root() -> dict:
     return {"status": HTTPStatus.OK}
 
 
-@app.post("/create")
-async def create_record(data: dict) -> dict:
+@app.post("/user/create")
+async def create_user(data: User) -> dict:
+    data = data.dict()
     resource = create(data)
     return {"status": HTTPStatus.CREATED, "resource_id": resource}
 
 
-@app.get("/read")
-async def read_record(resource_id: str) -> dict:
+@app.get("/user/read")
+async def get_user(resource_id: str) -> dict:
     data = read(resource_id)
     return {"status": HTTPStatus.OK, "data": data}
 
 
-@app.delete("/delete")
-async def delete_record(resource_id: str) -> dict:
+@app.delete("/user/delete")
+async def delete_user(resource_id: str) -> dict:
     delete(resource_id)
     return {"status": HTTPStatus.OK}
 
