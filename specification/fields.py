@@ -7,6 +7,7 @@ class UserModel(BaseModel):
     password: str
 
     @validator('password')
-    def password_validation(cls, password):
-        if len(password) < 6:
+    def password_validation(cls, v):
+        if len(v) < 6:
             raise ValidationError("Password should contain at least 6 symbols")
+        return v

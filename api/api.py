@@ -18,7 +18,7 @@ async def create_user(data: UserModel) -> dict:
     return {"status": HTTPStatus.CREATED, "resource_id": resource}
 
 
-@app.get("/user/read",
+@app.get("/user/read/{resource_id}",
          response_model=UserModel)
 async def get_user(resource_id: str) -> dict:
     data = read(resource_id)
