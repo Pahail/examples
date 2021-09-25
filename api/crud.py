@@ -1,7 +1,6 @@
 import os
 import json
 import uuid
-from specification import User
 
 db_path = "./db/"
 

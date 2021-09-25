@@ -1,1 +1,1 @@
-from .fields import User
+from .fields import UserModel
